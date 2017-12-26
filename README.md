@@ -1,4 +1,3 @@
-前端面试大全
 #Javascript
 ##ES6
 js的基本类型有哪些？引用类型有哪些？null和undefined的区别。
