@@ -1,6 +1,6 @@
 前端面试大全
-一、Javascript
-1.ES6
+#Javascript
+##ES6
 js的基本类型有哪些？引用类型有哪些？null和undefined的区别。
 String、Boolean、Number、null、undefined、Symbol
 undefined == null// true  undefined === null// false（undefined未定义，null定义了，但为空）
