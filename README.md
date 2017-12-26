@@ -1,38 +1,177 @@
 ##Javascript
 ###ES6
 - js的基本类型有哪些？引用类型有哪些？null和undefined的区别。
-String、Boolean、Number、null、undefined、Symbol
-undefined == null// true  undefined === null// false（undefined未定义，null定义了，但为空）
+
+答：基本类型有String、Boolean、Number、null、undefined、Symbol
+
+引用类型有Object（包括Array、Date、Regexp、Function、基本包装类型[String、Boolean、Number]、单体内置对象[Global、Math]）
+```js
+undefined == null// true  
+undefined === null// false 
+```
+undefined未定义；null定义了，但为空
 - 如何判断一个变量是Array类型？如何判断一个变量是Number类型？（都不止一种）
-方法一return Object.prototype.toString.call(o) === '[object Array]';  
-- Object是引用类型嘛？引用类型和基本类型有什么区别？哪个是存在堆哪一个是存在栈上面的？
-- JS常见的dom操作api
+
+```js
+Object.prototype.toString.call(str) === '[object Array]';//方法一
+Array.isArray()//方法二
+```
+```js
+typeof(num)==="number"//方法一
+Object.prototype.toString.call(num) === '[object Number]';//方法二  
+````
+- 引用类型和基本类型有什么区别？哪个是存在堆哪一个是存在栈上面的？
+
+答：基本类型是按值传递的，引用类型是按引用传递的。基本类型的值是存在堆上面的。引用类型的值是存在栈上面的（引用类型的值是一个指针，指向了存在堆上面的Object）
+ 
+- js常见的dom操作api
+
+答：
+```js
+document.getElementById()
+document.createElement()
+appendChild()
+remove()
+replaceChild()
+cloneNode()
+````
 - 解释一下事件冒泡和事件捕获
-- 事件委托（手写例子），事件冒泡和捕获，如何阻止冒泡？如何组织默认事件？
+
+答：事件冒泡和事件捕获是两大浏览器阵营提出的不同的事件流模型。事件捕获是指事件流程从文档模型最外层向最内层流动（直到事件触发的实际目标节点的上一层停止）；事件冒泡是指事件流从事件触发的实际目标节点向文档模型最外层流动。
+
+- 事件委托（手写例子），事件冒泡和捕获，如何阻止冒泡？如何阻止默认事件？
+
+答：例如
+```html
+<ul id="ul">
+  <li id="li1"></li>
+  <li id="li2"></li>
+  <li id="li3"></li>
+</ul>
+```
+```js
+document.getElementById('ul').addEventListener('click',function(e) {
+  switch (e.target.id){
+    case 'li1':
+      alert('li1');
+    case 'li2':
+      alert('li2');
+    case 'li3':
+      alert('li3');
+  }
+  
+},false);
+
+//阻止冒泡
+e.stopPropagation();
+
+//阻止默认事件
+e.preventDefault();
+````
 - 对闭包的理解？什么时候构成闭包？闭包的实现方法？闭包的优缺点？
+
+答：闭包就是声明在函数内部的函数，闭包的优点：可以有私有变量。缺点是引用变量无法销毁。
 - this有哪些使用场景？跟C,Java中的this有什么区别？如何改变this的值？
-- call，apply，bind
+- call，apply，bind有什么异同点？
+
+答：三者都可以用来给函数绑定this对象，不同的是apply的第二个参数是以数组的形式传入的。bind()返回的是原函数。
+
 - 显示原型和隐式原型，手绘原型链，原型链是什么？为什么要有原型链
+答：
 - 创建对象的多种方式
+
+答：new关键字、字面量、工厂模式、构造函数模式、原型模式、构造原型模式、动态原型模式、寄生构造函数模式、稳妥构造函数模式。
 - 实现继承的多种方式和优缺点
+
+答：原型链、借用构造函数、组合继承、原型式继承、寄生式继承、寄生组合式继承。
 - new 一个对象具体做了什么
+
+答：复制了这个对象的构造函数上的属性，继承了这个对象原型上的属性。
 - 手写Ajax，XMLHttpRequest
+```js
+const xmlhttp=new XMLHttpRequest();
+xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            alert(xmlhttp.responseText);
+        }
+    }
+xmlhttp.open("GET","/try/ajax/ajax_info.php",true);
+xmlhttp.send();
+````
 - 变量提升
+
+答：使用函数表达式声明函数，无法在声明函数之前调用函数。
 - 举例说明一个匿名函数的典型用例
+
+答：
+```js
+$("input").each(function(e){this.val('OK')});
+````
 - 指出JS的宿主对象和原生对象的区别，为什么扩展JS内置对象不是好的做法？有哪些内置对象和内置函数？
+
+答：宿主对象是指js的运行环境（比如浏览器、node）提供的额外对象，这些对象不是由ECMA-262规定的。是基于运行环境定义的对象。
 - attribute和property的区别
-- document load和document DOMContentLoaded两个事件的区别
+
+答：dom节点对象的默认属性叫property，自定义的属性绑定在attributes上。
+
 - === 和 == , [] === [], undefined === undefined,[] == [], undefined == undefined
+
+答：
+```js
+[] == [];//false
+[] === [];//false
+undefined == undefined;//true
+undefined === undefined;//true
+```
 - typeof能够得到哪些值
+
+答：string、number、boolean、undefined、null、symbol、object
 - 什么是“use strict”,好处和坏处
+
+答：1. 消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;  
+  2. 消除代码运行的一些不安全之处，保证代码运行的安全；  
+  3. 提高编译器效率，增加运行速度；  
+  4. 为未来新版本的Javascript做好铺垫。
 - 函数的作用域是什么？js 的作用域有几种？
+
+答：全局作用域、函数作用域、块级作用域。
+
 - JS如何实现重载和多态
+答：多态包括：接口、覆盖、重载。js支持覆盖。实现接口：父类里的函数执行后抛出错误，子类继承父类的时候执行父类的全部接口函数，如果抛出错误，则说明子类并未实现父类的全部接口。实现重载：以函数表达式的方式声明两个参数个数不同的函数，在声明一个函数，这个函数里判断arguments的长度来返回不同的函数。
 - 常用的数组api，字符串api
 - 原生事件绑定（跨浏览器），dom0和dom2的区别？
+
+答：dom0级的事件会覆盖，dom2级的不会覆盖,dom0和dom2共存也不会覆盖。dom0没有捕获和冒泡。
 - 给定一个元素获取它相对于视图窗口的坐标
+
+答：dom.getBoundingClientRect()
 - 如何实现图片滚动懒加载
+
+答：将需要懒加载的img的src改成data-src，监听滚动事件，当img距视口顶部的距离小于视口高度的时候将data-src的值复制给src。
 - js 的字符串类型有哪些方法？ 正则表达式的函数怎么使用？
 - 深拷贝
+
+答：
+```js
+var cloneObj = function(obj){
+    var str, newobj = obj.constructor === Array ? [] : {};
+    if(typeof obj !== 'object'){
+        return;
+    }
+   
+    str = JSON.stringify(obj), //系列化对象
+    newobj = JSON.parse(str); //还原
+
+    for(let i in obj){
+        newobj[i] = typeof obj[i] === 'object' ? 
+        cloneObj(obj[i]) : obj[i]; 
+    }
+ 
+    return newobj;
+};
+````
 - 编写一个通用的事件监听函数
 - web端cookie的设置和获取
 - setTimeout和promise的执行顺序
@@ -217,6 +356,7 @@ undefined == null// true  undefined === null// false（undefined未定义，null
 
 
 ##浏览器相关
+- document load和document DOMContentLoaded两个事件的区别
 - 跨域，为什么JS会对跨域做出限制
 - 前端安全：xss，csrf...
 - 浏览器怎么加载页面的？script脚本阻塞有什么解决方法？defer和async的区别？
