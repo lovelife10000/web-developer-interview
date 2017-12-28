@@ -174,18 +174,73 @@ var cloneObj = function(obj){
 ````
 - 编写一个通用的事件监听函数
 - web端cookie的设置和获取
+
+答：XMLHttpRequest对象的函数setRequestHeader()、getAllResponseHeaders()、getResponseHeader()。
 - setTimeout和promise的执行顺序
+
+答：process.nextTick > promise.then > setTimeout > setImmediate
 - JavaScript 的事件流模型都有什么？
+
+答：捕获和冒泡
 - navigator对象，location和history
 - js的垃圾回收机制
+
+答：标记清除、引用计数
 - 内存泄漏的原因和场景
+
+答：1.函数内声明全局变量2.闭包引起的内存泄漏3.dom节点删除时，绑定事件未清除4.dom节点删除时，其子节点的变量未设置为null
 - DOM事件的绑定的几种方式
+
+答：1.dom0级，通过内联属性，通过click()等;2.dom2通过事件监听函数addEventListener()
 - DOM事件中target和currentTarget的区别
+
+答：event.target返回触发事件的元素，event.currentTarget返回绑定事件的元素
 - typeof 和 instanceof 区别，instanceof原理
+
+答：instanceof运算符:此运算符可以判断一个变量是否是某个对象（类）的实例，返回值是布尔类型的。typeof运算符:此运算符可以返回一个字符串，用语说明元算数的类型，它的返回值有如下可能:代码如下:number,boolean,string,function,object,undefined
 - js动画和css3动画比较
 - JavaScript 倒计时（setTimeout）
+
+答：
+```js
+function TimeDown(id, endDateStr) {
+  //结束时间
+  var endDate = new Date(endDateStr);
+  //当前时间
+  var nowDate = new Date();
+  //相差的总秒数
+  var totalSeconds = parseInt((endDate - nowDate) / 1000);
+  //天数
+  var days = Math.floor(totalSeconds / (60 * 60 * 24));
+  //取模（余数）
+  var modulo = totalSeconds % (60 * 60 * 24);
+  //小时数
+  var hours = Math.floor(modulo / (60 * 60));
+  modulo = modulo % (60 * 60);
+  //分钟
+  var minutes = Math.floor(modulo / 60);
+  //秒
+  var seconds = modulo % 60;
+  //输出到页面
+  document.getElementById(id).innerHTML = "还剩:" + days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒";
+  //延迟一秒执行自己
+  setTimeout(function () {
+    TimeDown(id, endDateStr);
+  }, 1000)
+}
+
+```
 - js处理异常
 - js的设计模式知道那些
+
+答：单体模式：
+  工厂模式
+  单例模式
+  观察者模式（发布订阅模式）
+  策略模式
+  模板模式
+  代理模式
+  外观模式
 - 轮播图的实现，以及轮播图组件开发，轮播10000张图片过程
 - websocket的工作原理和机制。
 - 手指点击可以触控的屏幕时，是什么事件？
