@@ -1,0 +1,1 @@
+obj.constructor===Array //true
