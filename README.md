@@ -372,7 +372,7 @@ function TimeDown(id, endDateStr) {
 - Vue，Angular组件间通信以及路由原理
 - react和vue的生命周期
 - react和vue的虚拟dom以及diff算法
-- 解答：
+- 解答：https://www.zhihu.com/question/29504639?sort=created
 - vue的observer，watcher，compile
 - react和angular分别用在什么样的业务吗？性能方面和MVC层面上的区别
 - jQuery对象和JS的Element有什么区别
