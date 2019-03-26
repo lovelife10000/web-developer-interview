@@ -130,3 +130,39 @@
 // }
 // const foo = new Foo();
 // Foo = 'Fol'; // it's ok
+
+
+
+
+/*
+* 继承是指一个构造函数继承另一个构造函数
+* */
+// function Super() {}
+// Super.prototype.getNumber = function() {
+//     return 1
+// }
+//
+// function Sub() {}
+// let s = new Sub()
+// Sub.prototype = Object.create(Super.prototype, {
+//     constructor: {
+//         value: Sub,
+//         enumerable: false,
+//         writable: true,
+//         configurable: true
+//     }
+// })
+
+
+/*
+* 继承是指一个构造函数继承另一个构造函数
+* */
+// function Super() {}
+// Super.prototype.getNumber = function() {
+//     return 1
+// }
+//
+// function Sub() {}
+// Sub.prototype.__proto__=Super.prototype;
+// let s = new Sub();
+// console.log(s);
