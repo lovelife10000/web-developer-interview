@@ -1,149 +1,18 @@
 /*
-* class 声明会提升，但不会初始化赋值。Foo 进入暂时性死区，类似于 let、const 声明变量。
+* 继承是指一个构造函数继承另一个构造函数（es5）
 * */
-// const bar = new Bar(); // it's ok
-// function Bar() {
-//     this.bar = 42;
+// function Super() {
+//     this.age = 28;
 // }
 //
-// const foo = new Foo(); // ReferenceError: Foo is not defined
-// class Foo {
-//     constructor() {
-//         this.foo = 42;
-//     }
-// }
-
-
-
-
-/*
-*
-* class 声明内部会启用严格模式。*/
-// // 引用一个未声明的变量
-// function Bar() {
-//     baz = 42; // it's ok
-// }
-// const bar = new Bar();
-//
-// class Foo {
-//     constructor() {
-//         fol = 42; // ReferenceError: fol is not defined
-//     }
-// }
-// const foo = new Foo();
-
-
-
-
-/*
-* class 的所有方法（包括静态方法和实例方法）都是不可枚举的。
-* */
-// 引用一个未声明的变量
-// function Bar() {
-//     this.bar = 42;
-// }
-// Bar.answer = function() {
-//     return 42;
-// };
-// Bar.prototype.print = function() {
-//     console.log(this.bar);
-// };
-// const barKeys = Object.keys(Bar); // ['answer']
-// const barProtoKeys = Object.keys(Bar.prototype); // ['print']
-//
-// class Foo {
-//     constructor() {
-//         this.foo = 42;
-//     }
-//     static answer() {
-//         return 42;
-//     }
-//     print() {
-//         console.log(this.foo);
-//     }
-// }
-// const fooKeys = Object.keys(Foo); // []
-// const fooProtoKeys = Object.keys(Foo.prototype); // []
-
-
-
-
-/*
-* class 的所有方法（包括静态方法和实例方法）都没有原型对象 prototype，所以也没有[[construct]]，不能使用 new 来调用。
-* */
-// function Bar() {
-//     this.bar = 42;
-// }
-// Bar.prototype.print = function() {
-//     console.log(this.bar);
-// };
-//
-// const bar = new Bar();
-// const barPrint = new bar.print(); // it's ok
-//
-// class Foo {
-//     constructor() {
-//         this.foo = 42;
-//     }
-//     print() {
-//         console.log(this.foo);
-//     }
-// }
-// const foo = new Foo();
-// const fooPrint = new foo.print(); // TypeError: foo.print is not a constructor
-
-
-
-/*
-* 必须使用 new 调用 class。
-* */
-// function Bar() {
-//     this.bar = 42;
-// }
-// const bar = Bar(); // it's ok
-//
-// class Foo {
-//     constructor() {
-//         this.foo = 42;
-//     }
-// }
-// const foo = Foo(); // TypeError: Class constructor Foo cannot be invoked without 'new'
-
-
-
-/*
-* class 内部无法重写类名。
-* */
-// function Bar() {
-//     Bar = 'Baz'; // it's ok
-//     this.bar = 42;
-// }
-// const bar = new Bar();
-// // Bar: 'Baz'
-// // bar: Bar {bar: 42}
-//
-// class Foo {
-//     constructor() {
-//         this.foo = 42;
-//         Foo = 'Fol'; // TypeError: Assignment to constant variable
-//     }
-// }
-// const foo = new Foo();
-// Foo = 'Fol'; // it's ok
-
-
-
-
-/*
-* 继承是指一个构造函数继承另一个构造函数
-* */
-// function Super() {}
-// Super.prototype.getNumber = function() {
+// Super.prototype.getNumber = function () {
 //     return 1
 // }
 //
-// function Sub() {}
-// let s = new Sub()
+// function Sub() {
+//     this.age = 29;
+// }
+//
 // Sub.prototype = Object.create(Super.prototype, {
 //     constructor: {
 //         value: Sub,
@@ -152,10 +21,13 @@
 //         configurable: true
 //     }
 // })
+//
+// let s = new Sub()
+// debugger
 
 
 /*
-* 继承是指一个构造函数继承另一个构造函数
+* 继承是指一个构造函数继承另一个构造函数（es5）
 * */
 // function Super() {}
 // Super.prototype.getNumber = function() {
@@ -166,3 +38,34 @@
 // Sub.prototype.__proto__=Super.prototype;
 // let s = new Sub();
 // console.log(s);
+
+
+/*
+* 继承是指一个构造函数继承另一个构造函数（es5）
+* */
+function Super() {
+    this.age=28;
+    this.getAge=function () {
+        console.log(28)
+    }
+}
+Super.prototype.getNumber = function() {
+    return 1
+}
+
+function Sub(...ars) {
+    this.age=29;//说明来，通过apply/call来实现继承，是看apply和call写在子构造函数的属性下面还是上面，写在下面，会覆盖子构造函数的自有属性
+    Super.apply(this,arguments);//只是实现了属性的继承，通过把父构造函数，当作普通的函数调用来做到的
+    // Super.call(this,...ars);   //call方法的传参方式;
+
+    this.getAge=function () {//会对父构造函数的getAge方法进行覆盖
+        console.log(29)
+    }
+}
+
+let s = new Sub();
+console.log(s.age);
+debugger
+s.getAge();
+debugger
+console.log(s);
