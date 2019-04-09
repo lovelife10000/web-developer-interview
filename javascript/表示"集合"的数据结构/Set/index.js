@@ -15,10 +15,12 @@
 * 接收数组作为参数
 * 可接收类数组对象作为参数
 * */
-// let b = new Set([1, 2, 3, 4, 4]);
+let b = new Set([1, 2, 3, 4, 4]);
 // let c = new Set({});
-//
-// console.dir([...b])
+
+console.dir([...b])
+console.dir(b);
+debugger
 // console.dir(c)
 
 
