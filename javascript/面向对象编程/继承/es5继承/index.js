@@ -1,8 +1,70 @@
 /*
-* 继承是指一个构造函数继承另一个构造函数（es5）
+* 借用构造函数-原型式继承
+* */
+// function Super() {
+//     this.age = 28;
+// }
+//
+// Super.prototype.getNumber = function () {
+//     return 1
+// }
+//
+// function Sub(...ars) {
+//     // this.age = 29;
+//     // Super.apply(this, arguments);//借用构造函数继承
+//     Super.call(this, ...ars);//如果Super是原生构造函数，那么原生构造函数的内部属性是无法绑定到实例上去的//借用构造函数继承
+// }
+//
+// Sub.prototype = Object.create(Super.prototype, {//原型式继承
+//     constructor: {
+//         value: Sub,
+//         enumerable: false,
+//         writable: true,
+//         configurable: true
+//     }
+// })
+// // Sub.prototype.__proto__=Super.prototype;//非标准手段原型式继承
+//
+// let s = new Sub()
+// console.log(s.age);//29
+// debugger
+
+
+/*
+* 借用构造函数-组合式（实例化父构造函数式）继承
+* */
+// function Super() {
+//     this.age = 28;
+//     this.name='li'
+// }
+//
+// Super.prototype.getNumber = function () {
+//     return 1
+// }
+//
+// function Sub(...ars) {
+//     // Super.apply(this, arguments);//借用构造函数继承
+//     Super.call(this, ...ars);//如果Super是原生构造函数，那么原生构造函数的内部属性是无法绑定到实例上去的//借用构造函数继承
+//     this.age = 29;
+//
+// }
+//
+// Sub.prototype = new Super();//直接等于Super实例，包含__proto__,但包含类多余的属性name
+// Sub.prototype.constructor = Sub;//指回来，保持和Sub的关系
+//
+// let s = new Sub();
+// console.log(s.age);//29
+// debugger
+
+
+
+
+/*
+* 借用构造函数-寄生组合式继承
 * */
 function Super() {
     this.age = 28;
+    this.name='li'
 }
 
 Super.prototype.getNumber = function () {
@@ -10,31 +72,21 @@ Super.prototype.getNumber = function () {
 }
 
 function Sub(...ars) {
-    // this.age = 29;
-    // Super.apply(this, arguments);
-    Super.call(this,...ars);//如果Super是原生构造函数，那么原生构造函数的内部属性是无法绑定到实例上去的
+    // Super.apply(this, arguments);//借用构造函数继承
+    Super.call(this, ...ars);//如果Super是原生构造函数，那么原生构造函数的内部属性是无法绑定到实例上去的//借用构造函数继承
+    this.age = 29;
+
 }
 
-Sub.prototype = Object.create(Super.prototype, {
-    constructor: {
-        value: Sub,
-        enumerable: false,
-        writable: true,
-        configurable: true
-    }
-})
-// Sub.prototype.__proto__=Super.prototype;
-
-let s = new Sub()
+function inhert(sub,sup){
+    let obj=Object.assign({},sup.prototype);
+    sub.prototype=obj;
+    sub.prototype.constructor=sub;
+}
+inhert(Sub,Super)
+let s = new Sub();
 console.log(s.age);//29
 debugger
-
-
-
-
-
-
-
 
 
 /*
