@@ -16,8 +16,10 @@ const f = async function () {
 
     console.log(3)
 }
-
+console.dir(f);
+debugger
 const result = f();
+debugger
 result.then(function (info) {
     debugger
     console.log(info)

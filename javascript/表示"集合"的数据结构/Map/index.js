@@ -45,3 +45,27 @@
 // const b=['a']
 // map.set(b,666)
 // console.log(map.get(b))//666
+
+
+
+
+// var es6 = new Map();
+// es6.set("edition", 6);
+// es6.set("committee", "TC39");
+// es6.set("standard", "ECMA-262");
+// for (var [name, value] of es6) {
+//     console.log(name + ": " + value);
+// }
+// // edition: 6
+// // committee: TC39
+// // standard: ECMA-262
+
+
+
+
+let map = new Map().set('a', 1).set('b', 2);
+for (let pair of map) {
+    console.log(pair);
+}
+// ['a', 1]
+// ['b', 2]
