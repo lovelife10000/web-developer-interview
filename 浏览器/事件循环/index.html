@@ -5,6 +5,31 @@
     <title>Title</title>
 </head>
 <body>
+<div>666</div>
+<script>
+   console.log(1)
+</script>
+<div>
+    <div>667</div>
+    <script>
+        console.log(2)
+        setTimeout(function () {
+            console.log(7)
+        }, 0);
+    </script>
+    <script> console.log(3)</script>
+    <div>
+        668
+        <script> console.log(4)</script>
+        <div>1</div>
+    </div>
+</div>
+<script> console.log(5)</script>
+<div>669</div>
 <script src="./index.js"></script>
+<script>
+    console.log(6)
+    var a = new Abc();
+</script>
 </body>
 </html>
