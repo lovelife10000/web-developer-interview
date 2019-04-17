@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="a">666</div>
+<script>
+
+    setTimeout(function () {
+        debugger
+    },0);
+    let a=new Promise(function (resolve,reject) {
+        for(let i=0;i<1000;i++){
+            console.log(1)
+        }
+
+            resolve();
+
+
+    });
+    a.then(function () {
+        debugger
+    }).catch(function () {
+        debugger
+    });
+</script>
+</body>
+</html>

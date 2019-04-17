@@ -7,6 +7,7 @@
  */
 function listDiff (oldList, newList, key) {
     var oldMap = makeKeyIndexAndFree(oldList, key)
+
     var newMap = makeKeyIndexAndFree(newList, key)
 
     var newFree = newMap.free

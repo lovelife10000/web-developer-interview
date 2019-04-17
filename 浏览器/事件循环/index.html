@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>debugger会对settimeout造成影响</title>
+    <style>
+        .a{
+            color:red;
+        }
+    </style>
 </head>
 <body>
-<div>666</div>
+<div class="a">666</div>
 <script>
    console.log(1)
 </script>
@@ -27,8 +32,13 @@
         </div>
     </div>
 </div>
-<script> console.log(6)</script>
+<script> debugger;console.log(6)</script>
 <div>669</div>
+<style>
+    .a{
+        color:blue;
+    }
+</style>
 <script src="./index.js"></script>
 <script>
     console.log(7)

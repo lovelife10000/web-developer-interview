@@ -6,7 +6,7 @@ function diff(oldTree, newTree) {
 }
 
 function dfsWalkInDiff(oldNode, newNode, index, patches) {
-    debugger
+
     var currentPatch = []
 
     // Node is removed.
@@ -42,16 +42,17 @@ function dfsWalkInDiff(oldNode, newNode, index, patches) {
         currentPatch.push({type: patch.REPLACE, node: newNode})
     }
     console.log(patches);
-    debugger
+
     if (currentPatch.length) {
-        debugger
+
         patches[index] = currentPatch
     }
 }
 
 function diffChildren(oldChildren, newChildren, index, patches, currentPatch) {
-    debugger
+
     var diffs = listDiff(oldChildren, newChildren, 'key')
+
     newChildren = diffs.children
 
     if (diffs.moves.length) {

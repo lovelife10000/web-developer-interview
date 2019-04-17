@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function aa() {
+            debugger
+        }
+    </script>
+</head>
+<body>
+
+<div id="root" onclick="aa()">66</div>
+<script>
+//     document.getElementById('root').onclick=function a() {
+// debugger
+//     }
+//     document.getElementById('root').onclick=function b() {
+//         debugger
+//     }
+
+    document.getElementById('root').addEventListener('click',function () {
+        console.dir(document.getElementById('root'));
+        debugger
+    })
+</script>
+<script>
+    // let arr=[];
+    // while (true){
+    //
+    // }
+
+</script>
+</body>
+</html>
