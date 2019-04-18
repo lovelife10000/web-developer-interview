@@ -1,71 +1,38 @@
-/*
-* 继承是指一个构造函数继承另一个构造函数（es5）
-* */
-// function Super() {
-//     this.age = 28;
-// }
-//
-// Super.prototype.getNumber = function () {
-//     return 1
-// }
-//
-// function Sub() {
-//     this.age = 29;
-// }
-//
-// Sub.prototype = Object.create(Super.prototype, {
-//     constructor: {
-//         value: Sub,
-//         enumerable: false,
-//         writable: true,
-//         configurable: true
-//     }
-// })
-//
-// let s = new Sub()
-// debugger
+class Super {
 
 
-/*
-* 继承是指一个构造函数继承另一个构造函数（es5）
-* */
-// function Super() {}
-// Super.prototype.getNumber = function() {
-//     return 1
-// }
-//
-// function Sub() {}
-// Sub.prototype.__proto__=Super.prototype;
-// let s = new Sub();
-// console.log(s);
-
-
-/*
-* 继承是指一个构造函数继承另一个构造函数（es5）
-* */
-function Super() {
-    this.age=28;
-    this.getAge=function () {
-        console.log(28)
-    }
-}
-Super.prototype.getNumber = function() {
-    return 1
+    b(){}
 }
 
-function Sub(...ars) {
-    this.age=29;//说明来，通过apply/call来实现继承，是看apply和call写在子构造函数的属性下面还是上面，写在下面，会覆盖子构造函数的自有属性
-    Super.apply(this,arguments);//只是实现了属性的继承，通过把父构造函数，当作普通的函数调用来做到的
-    // Super.call(this,...ars);   //call方法的传参方式;
 
-    this.getAge=function () {//会对父构造函数的getAge方法进行覆盖
-        console.log(29)
-    }
+class Sub extends Super{
+
 }
 
-let s = new Sub();
-console.log(s.age);
+console.dir(Sub);
 debugger
-s.getAge();
+
+
+
+
+
+
+
+
+function Super2() {
+
+}
+
+Super2.prototype.a=function () {
+
+}
+
+function Sub2() {
+    Super2.apply(this,arguments)
+}
+
+Sub2.prototype=Object.create(Super2.prototype)
+Sub2.prototype.constructor=Sub2
+
+console.dir(Sub2);
 debugger
-console.log(s);
