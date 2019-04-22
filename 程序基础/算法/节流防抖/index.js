@@ -22,11 +22,11 @@ function throttle(fn) {
 }
 
 function sayHi() {
-    console.log('防抖成功');
+    console.log('666');
 }
 
 var inp = document.getElementById('inp');
-inp.addEventListener('input', throttle(sayHi)); // 防抖
+inp.addEventListener('input', debounce(sayHi)); // 防抖
 
 
 

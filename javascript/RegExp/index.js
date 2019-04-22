@@ -1,2 +1,7 @@
-let a=/a.@/.exec('a.@你d')
+let a=/a\.@/.exec('a.@你d')
 console.log(a)
+debugger
+
+
+
+
