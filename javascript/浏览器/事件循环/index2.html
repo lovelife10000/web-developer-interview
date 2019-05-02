@@ -11,12 +11,41 @@
 
     setTimeout(function () {
         debugger
-    },0);
-    let a=new Promise(function (resolve,reject) {
+    }, 0);
+
+
+    async function test() {
+        debugger
+        await $.ajax({
+            type: "get",
+            url: "http://localhost:9001/banner/get",
+            success: function (data) {
+                debugger
+                console.log(data)
+
+            }
+        });
+        debugger
+    }
+
+    test()
+
+
+    async function testSync() {
+        debugger
+        await 555
+        debugger
+    }
+
+    testSync()
+
+
+    let a = new Promise(function (resolve, reject) {
+        debugger
         $.ajax({
-            type:"get",
-            url:"http://localhost:9001/banner/get",
-            success:function(data){
+            type: "get",
+            url: "http://localhost:9001/banner/get",
+            success: function (data) {
                 debugger
                 console.log(data)
                 resolve();
@@ -29,6 +58,35 @@
     }).catch(function () {
         debugger
     });
+
+
+    async function test2() {
+        debugger
+        await $.ajax({
+            type: "get",
+            url: "http://localhost:9001/banner/get",
+            success: function (data) {
+                debugger
+                console.log(data)
+
+            }
+        });
+        debugger
+    }
+
+
+    test2()
+
+
+    async function test2Sync() {
+        debugger
+        await 666
+        debugger
+    }
+
+
+    test2Sync()
+    debugger
 </script>
 </body>
 </html>
