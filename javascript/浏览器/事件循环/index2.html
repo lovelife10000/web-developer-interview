@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.js"></script>
 </head>
 <body>
 <div id="a">666</div>
@@ -12,12 +13,15 @@
         debugger
     },0);
     let a=new Promise(function (resolve,reject) {
-        for(let i=0;i<1000;i++){
-            console.log(1)
-        }
-
-            resolve();
-
+        $.ajax({
+            type:"get",
+            url:"http://localhost:9001/banner/get",
+            success:function(data){
+                debugger
+                console.log(data)
+                resolve();
+            }
+        });
 
     });
     a.then(function () {
