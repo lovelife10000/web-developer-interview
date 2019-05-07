@@ -5,6 +5,28 @@
     <title>Title</title>
 </head>
 <body>
+<div class="a">1</div>
+<div class="a">2</div>
+<span>remove</span>
+<script>
+    let div = document.createTextNode('666');
+    let div2=div.cloneNode(true);
+    let ul = document.createElement('ul');
+    let li = document.createElement('li');
+    li.setAttribute('abc', 666);
+    ul.appendChild(li);
+    ul.insertBefore(div2,li)
+    document.body.appendChild(div);
+    document.body.appendChild(ul);
 
+    let a1=document.getElementsByClassName('a')[0];
+    let a2=document.getElementsByClassName('a')[1];
+    let a1r=document.createAttribute('abc');
+    a1r.value='a';
+    a1.setAttributeNode(a1r)
+    document.getElementsByTagName('span')[0].addEventListener('click',function () {
+        document.body.removeChild(ul)
+    })
+</script>
 </body>
 </html>
