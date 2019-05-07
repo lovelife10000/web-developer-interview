@@ -48,16 +48,18 @@
             success: function (data) {
                 debugger
                 console.log(data)
-                resolve();
+                // resolve();
             }
         });
-
+        resolve();
     });
     a.then(function () {
         debugger
     }).catch(function () {
         debugger
     });
+
+
 
 
     async function test2() {
